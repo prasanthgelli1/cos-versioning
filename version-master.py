@@ -3,7 +3,9 @@ import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import json
 import os
+import logging
 app = Flask(__name__)
+
 
 # Define a route for the root ("/") using the default HTTP method (GET).
 class COS:
@@ -15,6 +17,7 @@ class COS:
         
         self.bucket_name = bucket_name
         self.object_name = object_name
+        logging.info(self.COS_ENDPOINT)
     
     def connect(self):
         print("Connecting to COS.....")
@@ -67,12 +70,10 @@ class COS:
 @app.route("/", methods=["POST"])
 def root():
     return_payload = {}
-    versions_count =  os.getenv("VERSIONS")
+    versions_count =  int(os.getenv("VERSIONS"))
     event = json.loads(request.data)["notification"]
     bucket_name = event["bucket_name"]
     object_name = event["object_name"]
-    print("Here is cos versioning")
-    print(versions_count)
     cos = COS(bucket_name,object_name)
     cos.connect()
     versions_data = cos.get_all_versions_of_object()
@@ -83,4 +84,6 @@ def root():
         return_payload[version_id] = {"bucket_name":bucket_name,"object_name":object_name,"delete_status":response}
     return return_payload
 if __name__ == "__main__":
+    logLevel = logging.INFO        
+    logging.basicConfig(level = logLevel, format='%(asctime)s %(message)s')
     app.run(port=8080,debug=True)
