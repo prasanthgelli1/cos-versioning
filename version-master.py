@@ -71,7 +71,8 @@ def root():
     event = json.loads(request.data)["notification"]
     bucket_name = event["bucket_name"]
     object_name = event["object_name"]
-
+    print("Here is cos versioning")
+    print(versions_count)
     cos = COS(bucket_name,object_name)
     cos.connect()
     versions_data = cos.get_all_versions_of_object()
