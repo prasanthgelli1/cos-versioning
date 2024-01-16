@@ -8,7 +8,7 @@ tag="latest"
 code_engine_project="cos-versioning"
 
 #IBM Cloud Credentials
-ibm_cloud_registry="us.icr.io/cos" #Example -> "us.icr.io/cos"
+ibm_cloud_registry="<IBM CLOUD REGISTRY>" #Example -> "us.icr.io/cos"
 ibm_cloud_api_key="<IBM CLOUD API KEY>"
 ibm_cloud_email="<IBM CLOUD EMAIL>" #Example -> "abc@***.com"
 
