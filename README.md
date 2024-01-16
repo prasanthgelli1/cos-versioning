@@ -1,14 +1,17 @@
-# Configure COS Bucket to Maintain last N Versions
+# Configure COS Bucket for Version Management
 
 ## Outline
 This project configures the cos bucket to maintain last n iterations of the object.  
-Steps involved for configuration are
+
+  
+
+### Steps involved for configuration are
 1. Loging in IBM Cloud using ibmcloud cli
-2. Cloning the code repository and building an image which has a flask server which helps in maintaining the versions
-3. The build image is pushed to IBM CONTAINER REGISTRY or ICR which will be further used by code engine
+2. Cloning the code repository and constructing an image containing a Flask server for version management.
+3. The build image is pushed to IBM CONTAINER REGISTRY or ICR which will be further deployed in code engine
 4. Creating an Code Engine Project to deploy the build image 
-5. Setup Notification Manager to the created Code Engine project and COS instance
-6. Create a registry secret in Code Engine to fetch the pushed image from ICR
+5. Configuring the Notification Manager to serve as a bridge between the created Code Engine project and the Cloud Object Storage (COS) instance.
+6. Create a registry secret in Code Engine to retrieve the pushed image from the IBM Container Registry (ICR).
 7. Deploy the application
 8. Create an Event Subscription in Code Engine.
 
